@@ -13,12 +13,12 @@ export const Login = (props) =>
             method: "POST",
             body: JSON.stringify({ username: email, password: password })
         }).then((response) => {
-            if (response.status === 200) {
+            // if (response.status === 200) {
                 document.cookie = `session=${response.text}`;
                 window.location = '/homepage';
-            } else {
+            // } else {
                 alert("The server failed to sign you in!");
-            }
+            // }
         });
     }
 
