@@ -15,10 +15,10 @@ export const HomePage = (props) => {
     // Will convert each contact in the API's response to an HTML element
     const mapContactJSONtoElement = (c: Contact): React.JSX.Element => {
         return (
-            <div>
-                <p>Name: {c.firstName} {c.lastName}</p>
-                <p>Blah blah blah</p>
-            </div>
+            <ul>
+                <li>Name: {c.firstName} {c.lastName}</li>
+                <li>Blah blah blah</li>
+            </ul>
         );
     }
 
