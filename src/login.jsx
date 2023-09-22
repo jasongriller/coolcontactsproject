@@ -13,8 +13,9 @@ export const Login = (props) =>
             method: "POST",
             body: JSON.stringify({ username: email, password: password })
         }).then((response) => {
+            // TODO: Restore this code from comments when API works
             // if (response.status === 200) {
-                document.cookie = `session=${response.text}`;
+                document.cookie = `session=${response.text}`; // Response text should ONLY include token
                 window.location = '/homepage';
             // } else {
                 alert("The server failed to sign you in!");
