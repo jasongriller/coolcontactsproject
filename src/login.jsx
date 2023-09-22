@@ -9,6 +9,8 @@ export const Login = (props) =>
     {
         e.preventDefault();
         console.log(email);
+        // TODO: API call
+        window.location = '/homepage';
     }
 
     return (
