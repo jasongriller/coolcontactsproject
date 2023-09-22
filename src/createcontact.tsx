@@ -24,6 +24,25 @@ export const Login = (props) => {
         e.preventDefault();
     }
 
+    const handleChange = (key: keyof Contact, value: any) => {
+        setContact({...contact, [key]: value});
+    }
+
+    const contactElementsMap = (key: string): React.JSX.Element => {
+        return (
+            <div>
+                <label>{key}</label>
+                <input value={contact[key as keyof Contact]} onChange={(e) => handleChange(key as keyof Contact, e.target.value)}></input>
+            </div>
+        );
+    }
+
     return (
+        <div className="auth-form-container">
+            <form className="login-form" onSubmit={handleSubmit}>
+                {Object.keys(contact).map(contactElementsMap)}
+            </form>
+            <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
+        </div>
     )
 }
