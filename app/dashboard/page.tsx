@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Contact } from "./types";
+import { Contact } from "../types";
 
-export const HomePage = (props) => {
+const HomePage = (props) => {
     const [data, setData] = useState(({}));
 
     useEffect(() => {
@@ -34,3 +34,5 @@ export const HomePage = (props) => {
         </div>
     );
 }
+
+export default HomePage;

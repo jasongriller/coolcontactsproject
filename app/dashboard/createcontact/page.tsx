@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { Contact } from "./types";
+import { Contact } from "../../types";
 
-export const Login = (props) => {
+const CreateContact = (props) => {
     const [contact, setContact] = useState<Contact>(({
         username: 'imaknight12',
         firstName: 'Ima',
@@ -14,6 +14,10 @@ export const Login = (props) => {
     const handleSubmit = (e) => {
         fetch("/CreateContact.php", {
             method: "POST",
+            headers: {
+                "Session-Token": document.cookie.split("=")[1],
+                "Content-Type": "application/json",
+            },
             body: JSON.stringify(contact)
         }).then((response) => {
             if (response.status !== 200) {
@@ -48,3 +52,5 @@ export const Login = (props) => {
         </div>
     )
 }
+
+export default CreateContact;

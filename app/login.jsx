@@ -1,8 +1,11 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export const Login = (props) => 
 {
+    const router = useRouter();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -16,7 +19,7 @@ export const Login = (props) =>
         }).then((response) => {
             if (response.status === 200) {
                 document.cookie = `session=${response.text}`; // Response text should ONLY include token
-                window.location = '/homepage';
+                router.push('/dashboard');
             } else {
                 alert("The server failed to sign you in!");
             }
