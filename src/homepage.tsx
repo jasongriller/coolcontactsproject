@@ -18,7 +18,7 @@ export const HomePage = (props) => {
                 <li>Name: {c.firstName} {c.lastName}</li>
                 <li>Username: {c.username}</li>
                 <li>Email: {c.email}</li>
-                <li>Phone: {c.phone}</li>
+                <li>Phone: {c.phoneNumber}</li>
             </ul>
         );
     }
