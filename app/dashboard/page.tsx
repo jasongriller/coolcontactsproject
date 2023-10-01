@@ -15,7 +15,7 @@ const HomePage = (props) => {
     // Converts each contact in the API's response to an HTML element
     const mapContactJSONtoElement = (c: Contact): React.JSX.Element => {
         return (
-            <ul>
+            <ul key={c.username}>
                 <li>Name: {c.firstName} {c.lastName}</li>
                 <li>Username: {c.username}</li>
                 <li>Email: {c.email}</li>
