@@ -3,6 +3,7 @@ import { Contact } from "./types";
 
 export const Login = (props) => {
     const [contact, setContact] = useState<Contact>(({
+        username: 'imaknight12',
         firstName: 'Ima',
         lastName: 'Knight',
         email: 'alexcartwright@ucf.edu',
