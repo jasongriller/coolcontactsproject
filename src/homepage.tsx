@@ -11,13 +11,14 @@ export const HomePage = (props) => {
             .catch(error => console.error(error));
     }, []);
 
-    // TODO: Flesh out this map function
-    // Will convert each contact in the API's response to an HTML element
+    // Converts each contact in the API's response to an HTML element
     const mapContactJSONtoElement = (c: Contact): React.JSX.Element => {
         return (
             <ul>
                 <li>Name: {c.firstName} {c.lastName}</li>
-                <li>Blah blah blah</li>
+                <li>Username: {c.username}</li>
+                <li>Email: {c.email}</li>
+                <li>Phone: {c.phone}</li>
             </ul>
         );
     }
