@@ -42,8 +42,8 @@ export const Login = (props) => {
         <div className="auth-form-container">
             <form className="login-form" onSubmit={handleSubmit}>
                 {Object.keys(contact).map(contactElementsMap)}
+                <button type="submit">Add Contact</button>
             </form>
-            <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
         </div>
     )
 }
