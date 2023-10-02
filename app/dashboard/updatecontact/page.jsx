@@ -1,10 +1,7 @@
+"use client";
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 
 const UpdateContact = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-
   // State to hold user details
   const [userDetails, setUserDetails] = useState({
     name: "",
