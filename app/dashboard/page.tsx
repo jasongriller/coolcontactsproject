@@ -3,15 +3,14 @@ import React, { useEffect, useState } from "react";
 import { Contact } from "../types";
 
 const HomePage = (props) => {
-    const [data, setData] = useState(({}));
+    const [data, setData] = useState(([]));
 
     const searchForContacts = (searchString: string) => {
-        useEffect(() => {
-            fetch(encodeURI("/SearchContacts.php?search=" + searchString))
-                .then(response => response.json())
-                .then(json => setData(json))
-                .catch(error => console.error(error));
-        }, []);
+        console.log("I was called with the query: " + searchString);
+        fetch(encodeURI("/SearchContacts.php?search=" + searchString))
+            .then(response => response.json())
+            .then(json => setData(json))
+            .catch(error => console.error(error));
     };
 
     // Converts each contact in the API's response to an HTML element
@@ -26,7 +25,7 @@ const HomePage = (props) => {
         );
     }
 
-    searchForContacts(''); // Initial call, returning every contact
+    useEffect(() => { searchForContacts(''); }, []); // Initial call, returning every contact
 
     return (
         <div>
