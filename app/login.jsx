@@ -1,7 +1,11 @@
+"use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export const Login = (props) => 
 {
+    const router = useRouter();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -9,6 +13,17 @@ export const Login = (props) =>
     {
         e.preventDefault();
         console.log(email);
+        fetch("/SignIn.php", {
+            method: "POST",
+            body: JSON.stringify({ username: email, password: password })
+        }).then((response) => {
+            if (response.status === 200) {
+                document.cookie = `session=${response.text}`; // Response text should ONLY include token
+                router.push('/dashboard');
+            } else {
+                alert("The server failed to sign you in!");
+            }
+        });
     }
 
     return (
