@@ -1,9 +1,10 @@
 "use client";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Contact } from "../types";
 
 const HomePage = (props) => {
+    const router = useRouter();
     const [data, setData] = useState(([]));
 
     const searchForContacts = (searchString: string) => {
@@ -25,7 +26,7 @@ const HomePage = (props) => {
     const mapContactJSONtoElement = (c: Contact): React.JSX.Element => {
         return (
             <ul key={c.username}>
-                <li>Name: {c.firstName} {c.lastName} (<Link href="/dashboard/updatecontact">Edit Contact</Link>)</li>
+                <li>Name: {c.firstName} {c.lastName} <button type="button" onClick={() => router.push("/dashboard/updatecontact?current="+JSON.stringify(c), {})}>Edit Contact</button></li>
                 <li>Username: {c.username}</li>
                 <li>Email: {c.email}</li>
                 <li>Phone: {c.phoneNumber}</li>
