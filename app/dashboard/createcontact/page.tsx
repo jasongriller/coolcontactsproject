@@ -15,7 +15,7 @@ const CreateContact = (props) => {
     }));
 
     const handleSubmit = (e) => {
-        fetch("/CreateContact.php", {
+        fetch("/api/CreateContact.php", {
             method: "POST",
             headers: {
                 "Session-Token": document.cookie.split("=")[1],
