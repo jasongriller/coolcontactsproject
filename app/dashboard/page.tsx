@@ -14,13 +14,6 @@ const HomePage = (props) => {
             .then(response => response.json())
             .then(json => setData(json))
             .catch(error => console.error(error));
-        setData([{
-            username: "test@gmail.com",
-            firstName: "test@gmail.com",
-            lastName: "test@gmail.com",
-            email: "test@gmail.com",
-            phoneNumber: "test@gmail.com"
-        }]);
     };
 
     // Converts each contact in the API's response to an HTML element
