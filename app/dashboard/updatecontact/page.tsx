@@ -35,7 +35,7 @@ const UpdateContact = (props) => {
 
   const contactElementsMap = (key: string): React.JSX.Element => {
     return (
-      <div>
+      <div key={key}>
         <label>{key}</label>
         <input value={contact[key as keyof Contact]} onChange={(e) => handleChange(key as keyof Contact, e.target.value)}></input>
       </div>
