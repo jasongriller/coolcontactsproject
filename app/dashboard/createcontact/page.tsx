@@ -1,8 +1,11 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Contact } from "../../types";
 
 const CreateContact = (props) => {
+    const router = useRouter();
+
     const [contact, setContact] = useState<Contact>(({
         username: 'imaknight12',
         firstName: 'Ima',
@@ -24,14 +27,14 @@ const CreateContact = (props) => {
                 alert("Failed to post your new contact to the server!");
             } else {
                 alert("Success!");
-                window.location.href = '/homepage';
+                router.push("/dashboard");
             }
         })
         e.preventDefault();
     }
 
     const handleChange = (key: keyof Contact, value: any) => {
-        setContact({...contact, [key]: value});
+        setContact({ ...contact, [key]: value });
     }
 
     const contactElementsMap = (key: string): React.JSX.Element => {
