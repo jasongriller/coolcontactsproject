@@ -13,7 +13,7 @@ export const Login = (props) =>
     {
         e.preventDefault();
         console.log(email);
-        fetch("/SignIn.php", {
+        fetch("/api/SignIn.php", {
             method: "POST",
             body: JSON.stringify({ username: email, password: password })
         }).then((response) => {

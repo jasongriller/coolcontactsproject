@@ -11,7 +11,7 @@ const UpdateContact = (props) => {
   const [contact, setContact] = useState<Contact>((currentContact));
 
   const handleSubmit = (e) => {
-    fetch("/UpdateContact.php", {
+    fetch("/api/UpdateContact.php", {
       method: "POST",
       headers: {
         "Session-Token": document.cookie.split("=")[1],
@@ -35,7 +35,7 @@ const UpdateContact = (props) => {
 
   const contactElementsMap = (key: string): React.JSX.Element => {
     return (
-      <div>
+      <div key={key}>
         <label>{key}</label>
         <input value={contact[key as keyof Contact]} onChange={(e) => handleChange(key as keyof Contact, e.target.value)}></input>
       </div>
@@ -45,7 +45,7 @@ const UpdateContact = (props) => {
   const deleteContactFlow = () => {
     const choice = confirm("Are you sure you want to delete " + contact.firstName + " " + contact.lastName + "?");
     if (choice) {
-      fetch("/DeleteContact.php", {
+      fetch("/api/DeleteContact.php", {
         method: "POST",
         headers: {
           "Session-Token": document.cookie.split("=")[1],
