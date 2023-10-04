@@ -12,7 +12,6 @@ export const Login = (props) =>
 
     const handleSubmit = (e) =>
     {
-        e.preventDefault();
         console.log(email);
         fetch("/api/SignIn.php", {
             method: "POST",
