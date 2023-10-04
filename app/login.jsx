@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { SessionTokenResponse } from "./types";
 
 export const Login = (props) => 
 {
@@ -18,10 +17,8 @@ export const Login = (props) =>
             body: JSON.stringify({ username: email, password: password })
         }).then((response) => {
             if (response.status === 200) {
-                response.json().then((wrapped: SessionTokenResponse) => {
-                    document.cookie = `session=${wrapped.sessionToken}`;
-                    router.push('/dashboard');
-                });
+                document.cookie = `session=${response.text}`; // Response text should ONLY include token
+                router.push('/dashboard');
             } else {
                 alert("The server failed to sign you in!");
             }
