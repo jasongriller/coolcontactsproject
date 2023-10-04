@@ -37,6 +37,7 @@ const HomePage = (props) => {
             <div id="contactList">
                 {(data as Contact[]).map(mapContactJSONtoElement)}
             </div>
+            <button type="button" onClick={() => router.push("/dashboard/createcontact")}>Create Contact</button>
         </div>
     );
 }
