@@ -5,3 +5,7 @@ export interface Contact {
     email: string;
     phoneNumber: string;
 }
+
+export interface SessionTokenResponse {
+    sessionToken: string;
+}
