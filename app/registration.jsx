@@ -6,7 +6,7 @@ export const Register = (props) =>
 {
     const router = useRouter();
 
-    
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -17,22 +17,26 @@ export const Register = (props) =>
         password: password,
     };
 
-    const handleSubmit = (e) =>
-    {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(email);
-        const response = fetch("api/SignUp.php", {
-            method: "POST",
-            body: JSON.stringify(registrationData),
+    
+        //TODO: Change this to server IP once done
+        const response = await fetch("http://localhost:8000/api/SignUp.php", {
+          method: "POST",
+          body: JSON.stringify(registrationData),
         });
-
-        if (response === 200) {
-            document.cookie = `session=${response.text}`;
-            router.push('/dashboard');
+    
+        if (response.ok) {
+          const sessionToken = await response.text();
+          document.cookie = `session=${sessionToken}`;
+          
+          // Navigate to the dashboard
+          router.push('/dashboard');
         } else {
-            alert("The server failed to register you in!");
+          alert("The server failed to register you in!");
         }
-    }
+      }
 
     return (
         <div className="auth-form-container">
