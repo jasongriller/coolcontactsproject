@@ -10,7 +10,7 @@ const HomePage = (props) => {
 
     const searchForContacts = (searchString: string) => {
         console.log("I was called with the query: " + searchString);
-        fetch(encodeURI("/SearchContacts.php?search=" + searchString))
+        fetch(encodeURI("/api/SearchContacts.php?search=" + searchString))
             .then(response => response.json())
             .then(json => setData(json))
             .catch(error => console.error(error));
