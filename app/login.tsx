@@ -14,7 +14,7 @@ export const Login = (props) => {
         console.log(email);
         fetch("/api/SignIn.php", {
             method: "POST",
-            body: JSON.stringify({ username: email, password: password })
+            body: JSON.stringify({ email: email, password: password })
         }).then((response) => {
             if (response.status === 200) {
                 response.json().then((wrapped: SessionTokenResponse) => {
