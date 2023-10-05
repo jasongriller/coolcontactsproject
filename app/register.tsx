@@ -21,7 +21,7 @@ export const Register = (props) =>
     {
         e.preventDefault();
         console.log(email);
-        fetch("api/SignUp.php", {
+        fetch("/api/SignUp.php", {
             method: "POST",
             body: JSON.stringify(registrationData),
         }).then((response) => {
