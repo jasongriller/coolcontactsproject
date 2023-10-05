@@ -1,11 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { SessionTokenResponse } from "./types";
 
 export const Register = (props) => 
 {
     const router = useRouter();
-
     
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,17 +21,19 @@ export const Register = (props) =>
     {
         e.preventDefault();
         console.log(email);
-        const response = fetch("api/SignUp.php", {
+        fetch("api/SignUp.php", {
             method: "POST",
             body: JSON.stringify(registrationData),
+        }).then((response) => {
+            if (response.status === 200) {
+                response.json().then((wrapped: SessionTokenResponse) => {
+                    document.cookie = `session=${wrapped.sessionToken}`;
+                    router.push('/dashboard');
+                });
+            } else {
+                alert("The server failed to sign you in!");
+            }
         });
-
-        if (response === 200) {
-            document.cookie = `session=${response.text}`;
-            router.push('/dashboard');
-        } else {
-            alert("The server failed to register you in!");
-        }
     }
 
     return (
