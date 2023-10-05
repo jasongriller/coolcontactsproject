@@ -1,24 +1,26 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { SessionTokenResponse } from "./types";
 
-export const Login = (props) => 
-{
+export const Login = (props) => {
     const router = useRouter();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleSubmit = (e) =>
-    {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         console.log(email);
         fetch("/api/SignIn.php", {
             method: "POST",
             body: JSON.stringify({ username: email, password: password })
         }).then((response) => {
             if (response.status === 200) {
-                document.cookie = `session=${response.text}`; // Response text should ONLY include token
-                router.push('/dashboard');
+                response.json().then((wrapped: SessionTokenResponse) => {
+                    document.cookie = `session=${wrapped.sessionToken}`;
+                    router.push('/dashboard');
+                });
             } else {
                 alert("The server failed to sign you in!");
             }
@@ -29,7 +31,7 @@ export const Login = (props) =>
         <div className="auth-form-container">
             <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" />
+                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
                 <label htmlFor="password">Password</label>
                 <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="*********" id="password" name="password" />
                 <button type="submit">Log In</button>
