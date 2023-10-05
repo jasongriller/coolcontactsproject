@@ -10,7 +10,12 @@ const HomePage = (props) => {
 
     const searchForContacts = (searchString: string) => {
         console.log("I was called with the query: " + searchString);
-        fetch(encodeURI("/api/SearchContacts.php?search=" + searchString))
+        fetch(encodeURI("/api/SearchContacts.php?search=" + searchString), {
+            headers: {
+                "Session-Token": document.cookie.split("=")[1],
+                "Content-Type": "application/json",
+            },
+        })
             .then(response => response.json())
             .then(json => setData(json))
             .catch(error => console.error(error));
