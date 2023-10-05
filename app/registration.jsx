@@ -6,7 +6,6 @@ export const Register = (props) =>
 {
     const router = useRouter();
 
-    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
@@ -21,7 +20,7 @@ export const Register = (props) =>
     {
         e.preventDefault();
         console.log(email);
-        const response = fetch("api/SignUp.php", {
+        const response = fetch("/api/SignUp.php", {
             method: "POST",
             body: JSON.stringify(registrationData),
         });
