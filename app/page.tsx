@@ -2,7 +2,7 @@
 import React, { useState } from "react"
 import logo from './logo.svg'
 import { Login } from "./login";
-import { Register } from "./registration";
+import { Register } from "./register";
 
 function App() {
     const [currentForm, setCurrentForm] = useState('login');
