@@ -48,7 +48,7 @@ const UpdateContact = (props) => {
   const deleteContactFlow = () => {
     const choice = window.confirm("Are you sure you want to delete " + contact.firstName + " " + contact.lastName + "?");
     if (choice) {
-      fetch("/api/DeleteContact.php", {
+      fetch("/api/RemoveContact.php", {
         method: "POST",
         headers: {
           "Session-Token": document.cookie.split("=")[1],
