@@ -43,7 +43,7 @@ const UpdateContact = (props) => {
   }
 
   const deleteContactFlow = () => {
-    const choice = confirm("Are you sure you want to delete " + contact.firstName + " " + contact.lastName + "?");
+    const choice = window.confirm("Are you sure you want to delete " + contact.firstName + " " + contact.lastName + "?");
     if (choice) {
       fetch("/api/DeleteContact.php", {
         method: "POST",
