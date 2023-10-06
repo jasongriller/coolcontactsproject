@@ -11,7 +11,7 @@ const HomePage = (props) => {
     const searchForContacts = (searchString: string) => {
         console.log("I was called with the query: " + searchString);
 
-        fetch("http://localhost:8000/api/SearchContacts.php?search=" + encodeURIComponent(searchString), {
+        fetch("/api/SearchContacts.php?search=" + encodeURIComponent(searchString), {
             headers: {
                 "Session-Token": document.cookie.split("=")[1],
                 "Content-Type": "application/json",
@@ -40,11 +40,11 @@ const HomePage = (props) => {
                             Edit
                         </button>
                     </a>
-                    <a href={"/path/to/deletecontact"}>
+                    {/* <a href={"/path/to/deletecontact"}>
                         <button className="delete-button">
                             Delete
                         </button>
-                    </a>
+                    </a> */}
                 </div>
             </div>
         );
