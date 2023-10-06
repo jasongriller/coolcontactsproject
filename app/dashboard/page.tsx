@@ -7,6 +7,7 @@ import { Contact } from "../types";
 const HomePage = (props) => {
     const router = useRouter();
     const [data, setData] = useState(([]));
+    const [searchExpanded, setSearchExpanded] = useState(false);
 
     const searchForContacts = (searchString: string) => {
         console.log("I was called with the query: " + searchString);
@@ -50,18 +51,43 @@ const HomePage = (props) => {
         );
     }
 
+    const toggleSearchBar = () => {
+        setSearchExpanded((prevExpanded) => !prevExpanded);
+    };
+
+    const handleOutsideClick = (e) => {
+        const searchBar = document.querySelector(".search-bar");
+      
+        if (searchBar && !searchBar.contains(e.target)) {
+          setSearchExpanded(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener("click", handleOutsideClick);
+      
+        return () => {
+          document.removeEventListener("click", handleOutsideClick);
+        };
+    }, []);
+      
+      
+
     useEffect(() => { searchForContacts(''); }, []); // Initial call, returning every contact
 
     return (
         <div>
-            <h1>Welcome to Cool Contacts</h1>
-            <input type="text" onChange={(e) => searchForContacts(e.target.value)} placeholder="Search names, emails, ..."></input>
-            <div id="contactList">
-                {(data as Contact[]).map(mapContactJSONtoElement)}
-            </div>
-            <button type="button" onClick={() => router.push("/dashboard/createcontact")} className="create-contact-button">Create Contact</button>
+          <h1>Welcome to Cool Contacts</h1>
+          <input type="text" onChange={(e) => searchForContacts(e.target.value)} placeholder="Search names, emails, ..." className={`search-bar ${searchExpanded ? "expanded" : ""}`} onClick={toggleSearchBar}
+          ></input>
+          <div id="contactList">
+            {(data as Contact[]).map(mapContactJSONtoElement)}
+          </div>
+          <button type="button" onClick={() => router.push("/dashboard/createcontact")} className="create-contact-button">
+            Create Contact
+          </button>
         </div>
-    );
+      );
 }
 
 export default HomePage;

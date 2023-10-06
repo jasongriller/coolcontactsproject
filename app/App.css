@@ -120,3 +120,15 @@ button {
   background-color: #357ae8;
   transform: scale(1.05); /* Enlarge the button on hover */
 }
+
+/* Search Bar Animation */
+.search-bar {
+  max-width: 150px; /* Set the initial max-width of the search bar */
+  width: 100%; /* Ensure it takes full width within its container */
+  transition: max-width 0.3s ease-in-out; /* Smooth max-width transition */
+}
+
+/* Expanded search bar style */
+.search-bar.expanded {
+  max-width: 100%; /* Set the max-width to 100% when expanded */
+}
