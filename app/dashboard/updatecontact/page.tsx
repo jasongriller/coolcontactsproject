@@ -17,7 +17,10 @@ const UpdateContact = (props) => {
         "Session-Token": document.cookie.split("=")[1],
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(contact)
+      body: JSON.stringify({
+        "original": currentContact,
+        "new": contact
+      })
     }).then((response) => {
       if (response.status !== 200) {
         alert("Failed to post your changes to the server!");
