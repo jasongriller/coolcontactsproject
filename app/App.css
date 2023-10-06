@@ -48,3 +48,75 @@ button {
   color: white;
   text-decoration: underline;
 }
+
+/* CSS for contact card styles */
+.contact-card {
+  color: #333; /* Darker text color */
+  display: flex; /* Display contact card content as flex */
+  justify-content: space-between; /* Align content to the space between */
+  width: 100%; /* Span almost the entire screen width */
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px; /* Slightly more rounded corners */
+  transition: transform 0.2s;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  background-color: #f0f0f0;
+}
+
+.contact-card .details {
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.contact-card .edit-button,
+.contact-card .delete-button {
+  background: linear-gradient(79deg, #7439db, #C66FBC 48%, #F7944D); /* Make the button background transparent */
+  color: #f0f0f0; /* Button text color */
+  border-radius: 20px; /* More rounded shape */
+  padding: 6px 10px; /* Adjusted padding */
+  font-size: 14px; /* Smaller font size */
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  align-self: center; /* Center the button vertically */
+}
+
+.contact-card .edit-button:hover {
+  background: linear-gradient(79deg, #2baf49, #4bc172 48%, #6ded9e);;
+  background-color: #0fd20c;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40%;
+}
+
+.contact-card .delete-button:hover {
+  background: linear-gradient(79deg, #9e4227, #c7573f 48%, #df7049);;
+  background-color: #d20c0c;
+}
+
+/* Style for the "Create Contact" button */
+.create-contact-button {
+  background-color: #4285f4;
+  color: #fff;
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s; /* Add transform animation */
+  margin-bottom: 20px; /* Increase the margin at the bottom */
+}
+
+.create-contact-button:hover {
+  background-color: #357ae8;
+  transform: scale(1.05); /* Enlarge the button on hover */
+}

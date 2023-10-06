@@ -25,13 +25,29 @@ const HomePage = (props) => {
     // Converts each contact in the API's response to an HTML element
     const mapContactJSONtoElement = (c: Contact): React.JSX.Element => {
         return (
-            <ul key={c.username}>
-                <li>Name: {c.firstName} {c.lastName} (<Link href={"/dashboard/updatecontact?current="+JSON.stringify(c)}>Edit Contact</Link>)</li>
-                <li>Username: {c.username}</li>
-                <li>Email: {c.email}</li>
-                <li>Phone: {c.phoneNumber}</li>button
-            </ul>
-        ); 
+            <div key={c.username} className="contact-card">
+                <div>
+                    <div className="details">
+                        Name: {c.firstName} {c.lastName}
+                    </div>
+                    <div>Username: {c.username}</div>
+                    <div>Email: {c.email}</div>
+                    <div>Phone: {c.phoneNumber}</div>
+                </div>
+                <div className="button-container">
+                    <a href={"/dashboard/updatecontact?current="+JSON.stringify(c)}>
+                        <button className="edit-button">
+                            Edit
+                        </button>
+                    </a>
+                    {/* <a href={"/path/to/deletecontact"}>
+                        <button className="delete-button">
+                            Delete
+                        </button>
+                    </a> */}
+                </div>
+            </div>
+        );
     }
 
     useEffect(() => { searchForContacts(''); }, []); // Initial call, returning every contact
@@ -43,7 +59,7 @@ const HomePage = (props) => {
             <div id="contactList">
                 {(data as Contact[]).map(mapContactJSONtoElement)}
             </div>
-            <button type="button" onClick={() => router.push("/dashboard/createcontact")}>Create Contact</button>
+            <button type="button" onClick={() => router.push("/dashboard/createcontact")} className="create-contact-button">Create Contact</button>
         </div>
     );
 }
