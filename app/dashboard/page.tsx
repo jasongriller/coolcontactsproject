@@ -36,7 +36,7 @@ const HomePage = (props) => {
                     <div>Phone: {c.phoneNumber}</div>
                 </div>
                 <div className="button-container">
-                    <a href={"/dashboard/updatecontact?current="+JSON.stringify(c)}>
+                    <a href={"/dashboard/updatecontact?current=" + encodeURIComponent(JSON.stringify(c))}>
                         <button className="edit-button">
                             Edit
                         </button>

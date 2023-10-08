@@ -6,7 +6,7 @@ import { Contact } from "../../types";
 const UpdateContact = (props) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const currentContact: Contact = JSON.parse(searchParams.get("current"));
+  const currentContact: Contact = JSON.parse(decodeURIComponent(searchParams.get("current")));
 
   const [contact, setContact] = useState<Contact>((currentContact));
 
