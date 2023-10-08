@@ -32,11 +32,6 @@ const CreateContact = (props) => {
         })
         e.preventDefault();
     }
-
-    const handleChange = (key: keyof Contact, value: any) => {
-        setContact({ ...contact, [key]: value });
-    }
-
     
     const handleBackButtonClick = () => {
         router.push("/dashboard");
@@ -50,11 +45,18 @@ const CreateContact = (props) => {
         phoneNumber: "Phone Number",
     };
 
-    const contactElementsMap = (key: string): React.JSX.Element => {
+    const contactElementsMap = (key: keyof Contact): React.JSX.Element => {
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const { name, value } = e.target;
+            setContact((prevContact) => ({
+              ...prevContact,
+              [name]: value,
+            }));
+          };
         return (
             <div key={key}>
             <label htmlFor={key}>{fieldDisplayNames[key]}</label>
-                <input type="text" id={key} name={key} value={contact[key]} />
+                <input type="text" id={key} name={key} value={contact[key]} onChange={handleChange}/>
             </div>
         );
     }
