@@ -14,7 +14,7 @@ const HomePage = (props) => {
 
         fetch("/api/SearchContacts.php?search=" + encodeURIComponent(searchString), {
             headers: {
-                "Session-Token": document.cookie.split("=")[1],
+                "Session-Token": document.cookie.substring(0, document.cookie.indexOf(';')),
                 "Content-Type": "application/json",
             },
         })
@@ -52,6 +52,7 @@ const HomePage = (props) => {
     }
 
     const handleLogOutBtnClick = () => {
+        document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // Expires cookie, deleting instantly
         router.push("../");
     }
 

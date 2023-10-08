@@ -27,7 +27,7 @@ export const Register = (props) =>
         }).then((response) => {
             if (response.status === 200) {
                 response.json().then((wrapped: SessionTokenResponse) => {
-                    document.cookie = `session=${wrapped.sessionToken}`;
+                    document.cookie = `session=${wrapped.sessionToken}; path=/;`;
                     router.push('/dashboard');
                 });
             } else {

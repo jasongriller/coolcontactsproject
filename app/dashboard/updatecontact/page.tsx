@@ -14,7 +14,7 @@ const UpdateContact = (props) => {
     fetch("/api/UpdateContact.php", {
       method: "POST",
       headers: {
-        "Session-Token": document.cookie.split("=")[1],
+        "Session-Token": document.cookie.substring(0, document.cookie.indexOf(';')),
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -63,10 +63,10 @@ const UpdateContact = (props) => {
   const deleteContactFlow = () => {
     const choice = window.confirm("Are you sure you want to delete " + contact.firstName + " " + contact.lastName + "?");
     if (choice) {
-      fetch("http://localhost:8000/api/RemoveContact.php", {
+      fetch("/api/RemoveContact.php", {
         method: "POST",
         headers: {
-          "Session-Token": document.cookie.split("=")[1],
+          "Session-Token": document.cookie.substring(0, document.cookie.indexOf(';')),
           "Content-Type": "application/json",
         },
         body: JSON.stringify(contact)
