@@ -32,22 +32,38 @@ const CreateContact = (props) => {
         })
         e.preventDefault();
     }
-
-    const handleChange = (key: keyof Contact, value: any) => {
-        setContact({ ...contact, [key]: value });
+    
+    const handleBackButtonClick = () => {
+        router.push("/dashboard");
     }
+    
+    const fieldDisplayNames = {
+        username: "Username",
+        firstName: "First Name",
+        lastName: "Last Name",
+        email: "Email",
+        phoneNumber: "Phone Number",
+    };
 
-    const contactElementsMap = (key: string): React.JSX.Element => {
+    const contactElementsMap = (key: keyof Contact): React.JSX.Element => {
+        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const { name, value } = e.target;
+            setContact((prevContact) => ({
+              ...prevContact,
+              [name]: value,
+            }));
+          };
         return (
-            <div>
-                <label>{key}</label>
-                <input value={contact[key as keyof Contact]} onChange={(e) => handleChange(key as keyof Contact, e.target.value)}></input>
+            <div key={key}>
+            <label htmlFor={key}>{fieldDisplayNames[key]}</label>
+                <input type="text" id={key} name={key} value={contact[key]} onChange={handleChange}/>
             </div>
         );
     }
-
+    
     return (
         <div className="auth-form-container">
+            <button className="back-btn" onClick={handleBackButtonClick}>Back</button>
             <form className="login-form" onSubmit={handleSubmit}>
                 {Object.keys(contact).map(contactElementsMap)}
                 <button type="submit">Add Contact</button>
