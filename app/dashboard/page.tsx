@@ -14,7 +14,7 @@ const HomePage = (props) => {
 
         fetch("/api/SearchContacts.php?search=" + encodeURIComponent(searchString), {
             headers: {
-                "Session-Token": document.cookie.substring("=", document.cookie.indexOf(';')),
+                "Session-Token": document.cookie.split("=")[1],
                 "Content-Type": "application/json",
             },
         })

@@ -18,7 +18,7 @@ const CreateContact = (props) => {
         fetch("/api/CreateContact.php", {
             method: "POST",
             headers: {
-                "Session-Token": document.cookie.substring(document.cookie.indexOf("="), document.cookie.indexOf(';')),
+                "Session-Token": document.cookie.split("=")[1],
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(contact)
