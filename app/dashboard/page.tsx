@@ -51,6 +51,10 @@ const HomePage = (props) => {
         );
     }
 
+    const handleLogOutBtnClick = () => {
+        router.push("../");
+    }
+
     const toggleSearchBar = () => {
         setSearchExpanded((prevExpanded) => !prevExpanded);
     };
@@ -86,6 +90,7 @@ const HomePage = (props) => {
           <button type="button" onClick={() => router.push("/dashboard/createcontact")} className="create-contact-button">
             Create Contact
           </button>
+          <button className="log-out-btn" onClick={handleLogOutBtnClick}>Log Out</button>
         </div>
       );
 }

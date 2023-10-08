@@ -13,6 +13,19 @@ body {
   flex-direction: column;
 }
 
+.auth-form-container {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-form > div {
+  display: flex;
+  flex-direction: row; /* Change to row layout */
+  justify-content: space-between; /* Align items to the start (left) and end (right) */
+  margin-bottom: 10px;
+  width: 100%; /* Full width */
+  align-items: center;
+}
+
 @media screen and (min-width: 600px) {
   .auth-form-container {
     padding: 5rem;
@@ -41,6 +54,10 @@ button {
   border-radius: 10px;
   cursor: pointer;
   color: #7439db;
+}
+
+button:hover {
+  transform: scale(1.05);
 }
 
 .link-btn {
@@ -88,7 +105,7 @@ button {
 }
 
 .contact-card .edit-button:hover {
-  background: linear-gradient(79deg, #2baf49, #4bc172 48%, #6ded9e);;
+  background: linear-gradient(79deg, #2baf49, #4bc172 48%, #6ded9e);
   background-color: #0fd20c;
 }
 
@@ -131,4 +148,20 @@ button {
 /* Expanded search bar style */
 .search-bar.expanded {
   max-width: 100%; /* Set the max-width to 100% when expanded */
+}
+
+.get-in-btn:hover {
+  background: linear-gradient(79deg, #2baf49, #4bc172 48%, #6ded9e);
+}
+
+.back-btn {
+  align-self: flex-start;
+  margin-bottom: auto;
+}
+
+/* Log Out Button */
+.log-out-btn {
+  position: absolute;
+  top: 10%;
+  right: 10%;
 }

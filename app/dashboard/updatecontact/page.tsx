@@ -36,19 +36,31 @@ const UpdateContact = (props) => {
     setContact({ ...contact, [key]: value });
   }
 
+  const handleBackButtonClick = () => {
+    router.push("/dashboard");
+  }
+
+  const fieldDisplayNames = {
+      username: "Username",
+      firstName: "First Name",
+      lastName: "Last Name",
+      email: "Email",
+      phoneNumber: "Phone Number",
+  };
+
   const contactElementsMap = (key: string): React.JSX.Element => {
     return (
-      <div key={key}>
-        <label>{key}</label>
-        <input value={contact[key as keyof Contact]} onChange={(e) => handleChange(key as keyof Contact, e.target.value)}></input>
-      </div>
+        <div key={key}>
+        <label htmlFor={key}>{fieldDisplayNames[key]}</label>
+            <input type="text" id={key} name={key} value={contact[key]} />
+        </div>
     );
   }
 
   const deleteContactFlow = () => {
     const choice = window.confirm("Are you sure you want to delete " + contact.firstName + " " + contact.lastName + "?");
     if (choice) {
-      fetch("/api/RemoveContact.php", {
+      fetch("http://localhost:8000/api/RemoveContact.php", {
         method: "POST",
         headers: {
           "Session-Token": document.cookie.split("=")[1],
@@ -68,6 +80,7 @@ const UpdateContact = (props) => {
 
   return (
     <div className="auth-form-container">
+      <button className="back-btn" onClick={handleBackButtonClick}>Back</button>
       <form className="login-form" onSubmit={handleSubmit}>
         {Object.keys(contact).map(contactElementsMap)}
         &nbsp;
